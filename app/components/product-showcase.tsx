@@ -91,8 +91,23 @@ export function ProductShowcase({
   }, [activeIndex, images]);
 
   return (
-    <section className="grid items-center gap-10 lg:grid-cols-[1.04fr_0.96fr] lg:gap-14">
-      <div>
+    <section className="grid gap-10 lg:grid-cols-[1.04fr_0.96fr] lg:items-center lg:gap-x-14 lg:gap-y-8">
+      <div className="order-1 text-center lg:order-2 lg:text-left">
+        <p className="text-xs font-black uppercase tracking-[0.24em] text-brass-400">
+          {eyebrow}
+        </p>
+        <h3 className="mt-4 font-display text-4xl font-black leading-tight text-white sm:text-5xl">
+          {title}
+        </h3>
+        <p className="mt-2 text-sm font-black uppercase tracking-[0.2em] text-reed">
+          {subtitle}
+        </p>
+        <p className="mx-auto mt-7 max-w-2xl text-base leading-8 text-reed sm:text-lg lg:mx-0">
+          {description}
+        </p>
+      </div>
+
+      <div className="order-2 lg:order-1 lg:row-span-2">
         <div className="relative overflow-hidden rounded-md border border-white/10 bg-moss-950 shadow-2xl shadow-black/30">
           <div
             className="relative aspect-[1.34] touch-pan-y"
@@ -181,19 +196,8 @@ export function ProductShowcase({
         </div>
       </div>
 
-      <div>
-        <p className="text-xs font-black uppercase tracking-[0.24em] text-brass-400">
-          {eyebrow}
-        </p>
-        <h3 className="mt-4 font-display text-4xl font-black leading-tight text-white sm:text-5xl">
-          {title}
-        </h3>
-        <p className="mt-2 text-sm font-black uppercase tracking-[0.2em] text-reed">
-          {subtitle}
-        </p>
-        <p className="mt-7 text-base leading-8 text-reed sm:text-lg">{description}</p>
-
-        <dl className="mt-8 grid gap-4 sm:grid-cols-3">
+      <div className="order-3 lg:order-3">
+        <dl className="grid gap-4 sm:grid-cols-3">
           {specs.map((spec) => (
             <div
               key={spec.label}
