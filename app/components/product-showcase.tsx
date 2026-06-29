@@ -206,7 +206,7 @@ export function ProductShowcase({
               </dt>
               <dd className="mt-3 font-bold text-white">
                 {Array.isArray(spec.value) ? (
-                  <ul className="grid gap-x-5 gap-y-2 sm:grid-cols-2">
+                  <ul className="grid grid-cols-2 gap-x-3 gap-y-2 sm:gap-x-5">
                     {spec.value.map((item) => (
                       <li key={item} className="flex items-center gap-3">
                         <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-brass-400" />
