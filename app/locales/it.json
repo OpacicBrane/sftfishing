@@ -1,0 +1,100 @@
+{
+  "languageLabel": "Lingua",
+  "languageName": "IT",
+  "languageNativeName": "Italiano",
+  "nav": {
+    "home": "Home",
+    "models": "Modelli",
+    "contact": "Contatto"
+  },
+  "hero": {
+    "eyebrow": "Sport Fishing Tackle",
+    "title": "SFT Fishing",
+    "accent": "Artificiali",
+    "intro": "Artificiali da pesca premium realizzati con passione per la pesca. Per pescatori ricreativi e agonisti che non accettano compromessi.",
+    "primary": "Vedi i modelli",
+    "secondary": "Contattaci",
+    "imageAlt": "Lago nella nebbia all'alba"
+  },
+  "stats": [
+    {
+      "value": "100%",
+      "label": "Fatto a mano",
+      "text": "Ogni artificiale è rifinito con cura"
+    },
+    {
+      "value": "2",
+      "label": "Modelli",
+      "text": "Gallerie Alfa e Zed con foto reali"
+    },
+    {
+      "value": "SRB",
+      "label": "Marchio serbo",
+      "text": "Attrezzatura sportiva dalla Serbia"
+    }
+  ],
+  "productsLabel": "I nostri prodotti",
+  "productsTitle": "Modelli di artificiali",
+  "productsText": "I modelli Alfa e Zed sono presentati con gallerie di finiture reali, dimensioni disponibili e un contatto rapido.",
+  "products": [
+    {
+      "id": "alfa",
+      "imageAltPrefix": "Finitura Model Alfa",
+      "eyebrow": "Artificiale per predatori",
+      "title": "Model Alfa",
+      "subtitle": "Azione forte e vibrazione potente",
+      "description": "Progettato per pescatori che cercano un artificiale con un'azione forte. Il movimento ampio e la vibrazione potente stimolano l'attacco istintivo dei predatori. È eccellente per la pesca al siluro e, grazie al lavoro stabile a diverse velocità di recupero, offre sicurezza e affidabilità in ogni condizione di pesca.",
+      "specs": [
+        {
+          "label": "Dimensioni",
+          "value": ["4cm 6g", "5,5cm 10g", "5,5cm 15g", "7cm 20g", "7cm 30g", "8cm 40g", "9cm 50g", "12,5cm 100g", "12,5cm 140g"]
+        },
+        {
+          "label": "Uso",
+          "value": "Siluro e altri predatori"
+        }
+      ],
+      "cta": "Richiedi informazioni"
+    },
+    {
+      "id": "zed",
+      "imageAltPrefix": "Finitura Model Zed",
+      "eyebrow": "Artificiale per predatori",
+      "title": "Model Zed",
+      "subtitle": "Vibrazione fine ad alta frequenza",
+      "description": "Pensato per la pesca dei predatori. Grazie all'avvio facile e alla vibrazione fine ad alta frequenza, imita fedelmente la preda e provoca l'attacco istintivo dei predatori. Offre ottime prestazioni nei fiumi a diverse velocità di recupero.",
+      "specs": [
+        {
+          "label": "Dimensioni",
+          "value": ["5cm 10g", "6,5cm 15g", "6,5cm 25g"]
+        },
+        {
+          "label": "Uso",
+          "value": "Predatori di fiume"
+        }
+      ],
+      "cta": "Richiedi informazioni"
+    }
+  ],
+  "galleryLabels": {
+    "previous": "Immagine precedente",
+    "next": "Immagine successiva",
+    "showImage": "Mostra immagine",
+    "openThumbnail": "Apri miniatura"
+  },
+  "contact": {
+    "label": "Mettiti in contatto",
+    "title": "Contattaci",
+    "text": "Hai domande sui modelli, sugli ordini o su una collaborazione? Contattaci quando vuoi, rispondiamo rapidamente.",
+    "phone": "Telefono",
+    "email": "Email"
+  },
+  "footer": {
+    "text": "Produttore serbo di artificiali da pesca premium. Ogni artificiale è realizzato con cura per ottenere i migliori risultati.",
+    "navTitle": "Navigazione",
+    "models": "Modelli di artificiali",
+    "contactTitle": "Contatto",
+    "rights": "© 2026 SFT Fishing. Tutti i diritti riservati.",
+    "made": "Realizzato con passione per la pesca."
+  }
+}

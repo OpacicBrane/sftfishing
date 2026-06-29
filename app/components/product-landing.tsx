@@ -1,32 +1,25 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Mail, Phone } from "lucide-react";
+import enCopy from "../locales/en.json";
+import itCopy from "../locales/it.json";
+import rsCopy from "../locales/rs.json";
+import { LanguageSelect } from "./language-select";
 import { ProductShowcase } from "./product-showcase";
 
 const phoneDisplay = "+381 69 660 654";
 const phoneHref = "+38169660654";
 const email = "sft.srb@gmail.com";
 
-const languages = ["rs", "en"] as const;
+const languages = ["rs", "en", "it"] as const;
 type Language = (typeof languages)[number];
 
-const alfaDimensions = [
-  "4cm 6g",
-  "5,5cm 10g",
-  "5,5cm 15g",
-  "7cm 20g",
-  "7cm 30g",
-  "8cm 40g",
-  "9cm 50g",
-  "12,5cm 100g",
-  "12,5cm 140g",
-];
+const copy = {
+  rs: rsCopy,
+  en: enCopy,
+  it: itCopy,
+} as const;
 
-const zedDimensions = [
-  "5cm 10g",
-  "6,5cm 15g",
-  "6,5cm 25g",
-];
+export type ProductLandingLanguage = Language;
 
 const createModelImages = (model: string) =>
   Array.from({ length: 9 }, (_, index) => {
@@ -44,189 +37,41 @@ const zedImages = createModelImages("model-zed");
 const alfaLureNames = ["SFC", "HT", "FTP", "NP", "GS", "WH", "S", "B", "RH"];
 const zedLureNames = ["S", "C", "FTP", "NP", "RH", "WH", "B", "SFC", "HT"];
 
-const copy = {
-  rs: {
-    languageLabel: "Jezik",
-    languageName: "SRB",
-    nav: {
-      home: "Početna",
-      models: "Modeli",
-      contact: "Kontakt",
-    },
-    hero: {
-      eyebrow: "Sport Fishing Tackle",
-      title: "SFT Fishing",
-      accent: "Varalice",
-      intro:
-        "Premium ribolovne varalice izrađene sa strašću za ribolov. Za rekreativce i takmičare koji ne pristaju na kompromise.",
-      primary: "Pogledaj modele",
-      secondary: "Kontaktiraj nas",
-      imageAlt: "Maglovito jezero u zoru",
-    },
-    stats: [
-      { value: "100%", label: "Ručna izrada", text: "Svaka varalica pažljivo završena" },
-      { value: "2", label: "Modela", text: "Alfa i Zed galerije sa stvarnim fotografijama" },
-      { value: "SRB", label: "Domaći brend", text: "Sportski ribolov iz Srbije" },
-    ],
-    productsLabel: "Naši proizvodi",
-    productsTitle: "Modeli varalica",
-    productsText:
-      "Modeli Alfa i Zed predstavljeni su kroz galerije stvarnih dekora, sa dostupnim dimenzijama i brzom putanjom do kontakta.",
-    products: [
-      {
-        eyebrow: "Varalica za grabljivice",
-        title: "Model Alfa",
-        subtitle: "Snažna akcija i jaka vibracija",
-        description:
-          "Dizajnirana za ribolovce koji traže varalicu sa snažnom akcijom. Krupan rad i jaka vibracija izazivaju instinktivan napad grabljivica. Odlična je za lov soma, a zahvaljujući stabilnom radu pri različitim brzinama vođenja pruža sigurnost i pouzdanost u svim uslovima ribolova.",
-        specs: [
-          { label: "Dimenzije", value: alfaDimensions },
-          { label: "Namena", value: "Som i druge grabljivice" },
-        ],
-        images: alfaImages.map((image, index) => ({
-          ...image,
-          alt: `Model Alfa dekor ${index + 1}`,
-          name: alfaLureNames[index],
-        })),
-        cta: "Zatraži informacije",
-      },
-      {
-        eyebrow: "Varalica za grabljivice",
-        title: "Model Zed",
-        subtitle: "Sitna visokofrekventna vibracija",
-        description:
-          "Namenjena za lov grabljivica. Zahvaljujući lakom ulasku u rad i sitnoj, visokofrekventnoj vibraciji, verno imitira plen i izaziva instinktivan napad grabljivica. Odlične performanse pruža u rekama pri različitim brzinama vođenja.",
-        specs: [
-          { label: "Dimenzije", value: zedDimensions },
-          { label: "Namena", value: "Rečne grabljivice" },
-        ],
-        images: zedImages.map((image, index) => ({
-          ...image,
-          alt: `Model Zed dekor ${index + 1}`,
-          name: zedLureNames[index],
-        })),
-        cta: "Zatraži informacije",
-      },
-    ],
-    galleryLabels: {
-      previous: "Prethodna slika",
-      next: "Sledeća slika",
-      showImage: "Prikaži sliku",
-      openThumbnail: "Otvori thumbnail",
-    },
-    contact: {
-      label: "Stupite u kontakt",
-      title: "Kontaktirajte nas",
-      text:
-        "Imate pitanje o modelima, narudžbini ili saradnji? Slobodno nas kontaktirajte, odgovaramo brzo.",
-      phone: "Telefon",
-      email: "Email",
-    },
-    footer: {
-      text:
-        "Srpski proizvođač premium ribolovnih varalica. Svaka varalica je pažljivo izrađena za maksimalne rezultate.",
-      navTitle: "Navigacija",
-      models: "Modeli varalica",
-      contactTitle: "Kontakt",
-      rights: "© 2026 SFT Fishing. Sva prava zadržana.",
-      made: "Izrađeno sa strašću za ribolov.",
-    },
-  },
-  en: {
-    languageLabel: "Language",
-    languageName: "EN",
-    nav: {
-      home: "Home",
-      models: "Models",
-      contact: "Contact",
-    },
-    hero: {
-      eyebrow: "Sport Fishing Tackle",
-      title: "SFT Fishing",
-      accent: "Lures",
-      intro:
-        "Premium fishing lures crafted with a passion for angling. Built for recreational anglers and competitors who do not settle for compromises.",
-      primary: "View models",
-      secondary: "Contact us",
-      imageAlt: "Misty lake at dawn",
-    },
-    stats: [
-      { value: "100%", label: "Handmade", text: "Every lure is carefully finished" },
-      { value: "2", label: "Models", text: "Alfa and Zed galleries with real photos" },
-      { value: "SRB", label: "Serbian brand", text: "Sport fishing tackle from Serbia" },
-    ],
-    productsLabel: "Our products",
-    productsTitle: "Lure models",
-    productsText:
-      "Models Alfa and Zed are presented through galleries of real finishes, available dimensions, and a quick path to contact.",
-    products: [
-      {
-        eyebrow: "Predator lure",
-        title: "Model Alfa",
-        subtitle: "Strong action and powerful vibration",
-        description:
-          "Designed for anglers looking for a lure with strong action. Its wide movement and powerful vibration trigger an instinctive strike from predators. It is excellent for catfish fishing, while its stable performance at different retrieve speeds provides confidence and reliability in all fishing conditions.",
-        specs: [
-          { label: "Dimensions", value: alfaDimensions },
-          { label: "Use", value: "Catfish and other predators" },
-        ],
-        images: alfaImages.map((image, index) => ({
-          ...image,
-          alt: `Model Alfa finish ${index + 1}`,
-          name: alfaLureNames[index],
-        })),
-        cta: "Request information",
-      },
-      {
-        eyebrow: "Predator lure",
-        title: "Model Zed",
-        subtitle: "Fine high-frequency vibration",
-        description:
-          "Intended for targeting predatory fish. Thanks to its easy start-up and fine, high-frequency vibration, it faithfully imitates prey and triggers an instinctive strike from predators. It delivers excellent performance in rivers at different retrieve speeds.",
-        specs: [
-          { label: "Dimensions", value: zedDimensions },
-          { label: "Use", value: "River predators" },
-        ],
-        images: zedImages.map((image, index) => ({
-          ...image,
-          alt: `Model Zed finish ${index + 1}`,
-          name: zedLureNames[index],
-        })),
-        cta: "Request information",
-      },
-    ],
-    galleryLabels: {
-      previous: "Previous image",
-      next: "Next image",
-      showImage: "Show image",
-      openThumbnail: "Open thumbnail",
-    },
-    contact: {
-      label: "Get in touch",
-      title: "Contact us",
-      text:
-        "Have a question about models, orders, or collaboration? Contact us anytime and we will reply quickly.",
-      phone: "Phone",
-      email: "Email",
-    },
-    footer: {
-      text:
-        "A Serbian producer of premium fishing lures. Every lure is carefully crafted for maximum results.",
-      navTitle: "Navigation",
-      models: "Lure models",
-      contactTitle: "Contact",
-      rights: "© 2026 SFT Fishing. All rights reserved.",
-      made: "Made with a passion for fishing.",
-    },
-  },
-};
+const productGalleryAssets = {
+  alfa: { images: alfaImages, names: alfaLureNames },
+  zed: { images: zedImages, names: zedLureNames },
+} as const;
+
+const languageOptions = languages.map((code) => ({
+  code,
+  name: copy[code].languageName,
+  label: copy[code].languageNativeName,
+  flag: {
+    rs: "🇷🇸",
+    en: "🇬🇧",
+    it: "🇮🇹",
+  }[code],
+}));
+
+function getProductGallery(productId: string) {
+  return productGalleryAssets[productId as keyof typeof productGalleryAssets];
+}
 
 export function ProductLanding({ language }: { language: Language }) {
   const text = copy[language];
-  const products = text.products.map((product) => ({
-    ...product,
-    galleryLabels: text.galleryLabels,
-  }));
+  const products = text.products.map((product) => {
+    const gallery = getProductGallery(product.id);
+
+    return {
+      ...product,
+      galleryLabels: text.galleryLabels,
+      images: gallery.images.map((image, index) => ({
+        ...image,
+        alt: `${product.imageAltPrefix} ${index + 1}`,
+        name: gallery.names[index],
+      })),
+    };
+  });
 
   return (
     <main className="min-h-screen bg-moss-950 text-stone-50">
@@ -304,29 +149,11 @@ function Header({
           </a>
         </div>
         <div className="flex items-center gap-2">
-          <div
-            className="hidden overflow-hidden rounded-md border border-white/15 text-xs font-black text-white sm:flex"
-            aria-label={text.languageLabel}
-          >
-            {languages.map((option) => (
-              <Link
-                key={option}
-                href={`/${option}`}
-                aria-current={language === option ? "page" : undefined}
-                className={`px-3 py-2 transition hover:bg-white/10 ${
-                  language === option ? "bg-brass-400 text-moss-950" : "text-white"
-                }`}
-              >
-                {copy[option].languageName}
-              </Link>
-            ))}
-          </div>
-          <a
-            href={`tel:${phoneHref}`}
-            className="rounded-md border border-brass-400/70 px-4 py-3 text-xs font-black text-brass-300 transition hover:bg-brass-400 hover:text-moss-950"
-          >
-            {phoneDisplay}
-          </a>
+          <LanguageSelect
+            current={language}
+            label={text.languageLabel}
+            options={languageOptions}
+          />
         </div>
       </nav>
     </header>

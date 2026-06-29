@@ -1,0 +1,100 @@
+{
+  "languageLabel": "Jezik",
+  "languageName": "SRB",
+  "languageNativeName": "Srpski",
+  "nav": {
+    "home": "Početna",
+    "models": "Modeli",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "eyebrow": "Sport Fishing Tackle",
+    "title": "SFT Fishing",
+    "accent": "Varalice",
+    "intro": "Premium ribolovne varalice izrađene sa strašću za ribolov. Za rekreativce i takmičare koji ne pristaju na kompromise.",
+    "primary": "Pogledaj modele",
+    "secondary": "Kontaktiraj nas",
+    "imageAlt": "Maglovito jezero u zoru"
+  },
+  "stats": [
+    {
+      "value": "100%",
+      "label": "Ručna izrada",
+      "text": "Svaka varalica pažljivo završena"
+    },
+    {
+      "value": "2",
+      "label": "Modela",
+      "text": "Alfa i Zed galerije sa stvarnim fotografijama"
+    },
+    {
+      "value": "SRB",
+      "label": "Domaći brend",
+      "text": "Sportski ribolov iz Srbije"
+    }
+  ],
+  "productsLabel": "Naši proizvodi",
+  "productsTitle": "Modeli varalica",
+  "productsText": "Modeli Alfa i Zed predstavljeni su kroz galerije stvarnih dekora, sa dostupnim dimenzijama i brzom putanjom do kontakta.",
+  "products": [
+    {
+      "id": "alfa",
+      "imageAltPrefix": "Model Alfa dekor",
+      "eyebrow": "Varalica za grabljivice",
+      "title": "Model Alfa",
+      "subtitle": "Snažna akcija i jaka vibracija",
+      "description": "Dizajnirana za ribolovce koji traže varalicu sa snažnom akcijom. Krupan rad i jaka vibracija izazivaju instinktivan napad grabljivica. Odlična je za lov soma, a zahvaljujući stabilnom radu pri različitim brzinama vođenja pruža sigurnost i pouzdanost u svim uslovima ribolova.",
+      "specs": [
+        {
+          "label": "Dimenzije",
+          "value": ["4cm 6g", "5,5cm 10g", "5,5cm 15g", "7cm 20g", "7cm 30g", "8cm 40g", "9cm 50g", "12,5cm 100g", "12,5cm 140g"]
+        },
+        {
+          "label": "Namena",
+          "value": "Som i druge grabljivice"
+        }
+      ],
+      "cta": "Zatraži informacije"
+    },
+    {
+      "id": "zed",
+      "imageAltPrefix": "Model Zed dekor",
+      "eyebrow": "Varalica za grabljivice",
+      "title": "Model Zed",
+      "subtitle": "Sitna visokofrekventna vibracija",
+      "description": "Namenjena za lov grabljivica. Zahvaljujući lakom ulasku u rad i sitnoj, visokofrekventnoj vibraciji, verno imitira plen i izaziva instinktivan napad grabljivica. Odlične performanse pruža u rekama pri različitim brzinama vođenja.",
+      "specs": [
+        {
+          "label": "Dimenzije",
+          "value": ["5cm 10g", "6,5cm 15g", "6,5cm 25g"]
+        },
+        {
+          "label": "Namena",
+          "value": "Rečne grabljivice"
+        }
+      ],
+      "cta": "Zatraži informacije"
+    }
+  ],
+  "galleryLabels": {
+    "previous": "Prethodna slika",
+    "next": "Sledeća slika",
+    "showImage": "Prikaži sliku",
+    "openThumbnail": "Otvori thumbnail"
+  },
+  "contact": {
+    "label": "Stupite u kontakt",
+    "title": "Kontaktirajte nas",
+    "text": "Imate pitanje o modelima, narudžbini ili saradnji? Slobodno nas kontaktirajte, odgovaramo brzo.",
+    "phone": "Telefon",
+    "email": "Email"
+  },
+  "footer": {
+    "text": "Srpski proizvođač premium ribolovnih varalica. Svaka varalica je pažljivo izrađena za maksimalne rezultate.",
+    "navTitle": "Navigacija",
+    "models": "Modeli varalica",
+    "contactTitle": "Kontakt",
+    "rights": "© 2026 SFT Fishing. Sva prava zadržana.",
+    "made": "Izrađeno sa strašću za ribolov."
+  }
+}

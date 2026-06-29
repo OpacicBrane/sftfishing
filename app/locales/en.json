@@ -1,0 +1,100 @@
+{
+  "languageLabel": "Language",
+  "languageName": "EN",
+  "languageNativeName": "English",
+  "nav": {
+    "home": "Home",
+    "models": "Models",
+    "contact": "Contact"
+  },
+  "hero": {
+    "eyebrow": "Sport Fishing Tackle",
+    "title": "SFT Fishing",
+    "accent": "Lures",
+    "intro": "Premium fishing lures crafted with a passion for angling. Built for recreational anglers and competitors who do not settle for compromises.",
+    "primary": "View models",
+    "secondary": "Contact us",
+    "imageAlt": "Misty lake at dawn"
+  },
+  "stats": [
+    {
+      "value": "100%",
+      "label": "Handmade",
+      "text": "Every lure is carefully finished"
+    },
+    {
+      "value": "2",
+      "label": "Models",
+      "text": "Alfa and Zed galleries with real photos"
+    },
+    {
+      "value": "SRB",
+      "label": "Serbian brand",
+      "text": "Sport fishing tackle from Serbia"
+    }
+  ],
+  "productsLabel": "Our products",
+  "productsTitle": "Lure models",
+  "productsText": "Models Alfa and Zed are presented through galleries of real finishes, available dimensions, and a quick path to contact.",
+  "products": [
+    {
+      "id": "alfa",
+      "imageAltPrefix": "Model Alfa finish",
+      "eyebrow": "Predator lure",
+      "title": "Model Alfa",
+      "subtitle": "Strong action and powerful vibration",
+      "description": "Designed for anglers looking for a lure with strong action. Its wide movement and powerful vibration trigger an instinctive strike from predators. It is excellent for catfish fishing, while its stable performance at different retrieve speeds provides confidence and reliability in all fishing conditions.",
+      "specs": [
+        {
+          "label": "Dimensions",
+          "value": ["4cm 6g", "5,5cm 10g", "5,5cm 15g", "7cm 20g", "7cm 30g", "8cm 40g", "9cm 50g", "12,5cm 100g", "12,5cm 140g"]
+        },
+        {
+          "label": "Use",
+          "value": "Catfish and other predators"
+        }
+      ],
+      "cta": "Request information"
+    },
+    {
+      "id": "zed",
+      "imageAltPrefix": "Model Zed finish",
+      "eyebrow": "Predator lure",
+      "title": "Model Zed",
+      "subtitle": "Fine high-frequency vibration",
+      "description": "Intended for targeting predatory fish. Thanks to its easy start-up and fine, high-frequency vibration, it faithfully imitates prey and triggers an instinctive strike from predators. It delivers excellent performance in rivers at different retrieve speeds.",
+      "specs": [
+        {
+          "label": "Dimensions",
+          "value": ["5cm 10g", "6,5cm 15g", "6,5cm 25g"]
+        },
+        {
+          "label": "Use",
+          "value": "River predators"
+        }
+      ],
+      "cta": "Request information"
+    }
+  ],
+  "galleryLabels": {
+    "previous": "Previous image",
+    "next": "Next image",
+    "showImage": "Show image",
+    "openThumbnail": "Open thumbnail"
+  },
+  "contact": {
+    "label": "Get in touch",
+    "title": "Contact us",
+    "text": "Have a question about models, orders, or collaboration? Contact us anytime and we will reply quickly.",
+    "phone": "Phone",
+    "email": "Email"
+  },
+  "footer": {
+    "text": "A Serbian producer of premium fishing lures. Every lure is carefully crafted for maximum results.",
+    "navTitle": "Navigation",
+    "models": "Lure models",
+    "contactTitle": "Contact",
+    "rights": "© 2026 SFT Fishing. All rights reserved.",
+    "made": "Made with a passion for fishing."
+  }
+}

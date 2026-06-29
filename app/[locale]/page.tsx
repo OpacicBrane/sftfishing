@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
-import { ProductLanding } from "../components/product-landing";
+import { ProductLanding, type ProductLandingLanguage } from "../components/product-landing";
 
-const locales = ["rs", "en"] as const;
-type Locale = (typeof locales)[number];
+const locales = ["rs", "en", "it"] as const satisfies readonly ProductLandingLanguage[];
+type Locale = ProductLandingLanguage;
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
