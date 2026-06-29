@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect, useState } from "react";
+import type { PointerEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type ProductShowcaseProps = {
   eyebrow: string;
@@ -41,6 +42,7 @@ export function ProductShowcase({
   eager = false,
 }: ProductShowcaseProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const swipeStart = useRef<{ x: number; y: number } | null>(null);
   const activeImage = images[activeIndex];
   const preloadImage = (image: string) => {
     const preloadedImage = new window.Image();
@@ -51,6 +53,33 @@ export function ProductShowcase({
   };
   const showNextImage = () => {
     setActiveIndex((current) => (current === images.length - 1 ? 0 : current + 1));
+  };
+  const handleSwipeStart = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "mouse") {
+      return;
+    }
+
+    swipeStart.current = { x: event.clientX, y: event.clientY };
+  };
+  const handleSwipeEnd = (event: PointerEvent<HTMLDivElement>) => {
+    if (!swipeStart.current || event.pointerType === "mouse") {
+      swipeStart.current = null;
+      return;
+    }
+
+    const deltaX = event.clientX - swipeStart.current.x;
+    const deltaY = event.clientY - swipeStart.current.y;
+    const isHorizontalSwipe = Math.abs(deltaX) > 48 && Math.abs(deltaX) > Math.abs(deltaY) * 1.35;
+
+    if (isHorizontalSwipe) {
+      if (deltaX < 0) {
+        showNextImage();
+      } else {
+        showPreviousImage();
+      }
+    }
+
+    swipeStart.current = null;
   };
 
   useEffect(() => {
@@ -65,7 +94,14 @@ export function ProductShowcase({
     <section className="grid items-center gap-10 lg:grid-cols-[1.04fr_0.96fr] lg:gap-14">
       <div>
         <div className="relative overflow-hidden rounded-md border border-white/10 bg-moss-950 shadow-2xl shadow-black/30">
-          <div className="relative aspect-[1.34]">
+          <div
+            className="relative aspect-[1.34] touch-pan-y"
+            onPointerCancel={() => {
+              swipeStart.current = null;
+            }}
+            onPointerDown={handleSwipeStart}
+            onPointerUp={handleSwipeEnd}
+          >
             <Image
               src={activeImage.image}
               alt={activeImage.alt}
@@ -102,14 +138,14 @@ export function ProductShowcase({
             {images.map((image, index) => (
               <button
                 key={image.image}
-              type="button"
-              aria-label={`${galleryLabels.showImage} ${index + 1}`}
-              onClick={() => setActiveIndex(index)}
-              onFocus={() => preloadImage(image.image)}
-              onMouseEnter={() => preloadImage(image.image)}
-              className={`h-3 w-3 rounded-full transition ${
-                activeIndex === index
-                  ? "bg-brass-400"
+                type="button"
+                aria-label={`${galleryLabels.showImage} ${index + 1}`}
+                onClick={() => setActiveIndex(index)}
+                onFocus={() => preloadImage(image.image)}
+                onMouseEnter={() => preloadImage(image.image)}
+                className={`h-3 w-3 rounded-full transition ${
+                  activeIndex === index
+                    ? "bg-brass-400"
                     : "bg-white/45 hover:bg-white/75"
                 }`}
               />
