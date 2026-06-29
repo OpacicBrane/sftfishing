@@ -22,11 +22,22 @@ const alfaDimensions = [
   "12,5cm 140g",
 ];
 
+const zedDimensions = [
+  "5cm 10g",
+  "6,5cm 15g",
+  "6,5cm 25g",
+];
+
 const alfaImages = Array.from({ length: 9 }, (_, index) => ({
   image: `/models/model-alfa/model-alfa-${String(index + 1).padStart(2, "0")}.jpeg`,
 }));
 
+const zedImages = Array.from({ length: 9 }, (_, index) => ({
+  image: `/models/model-zed/model-zed-${String(index + 1).padStart(2, "0")}.jpeg`,
+}));
+
 const alfaLureNames = ["SFC", "HT", "FTP", "NP", "GS", "WH", "S", "B", "RH"];
+const zedLureNames = ["S", "C", "FTP", "NP", "RH", "WH", "B", "SFC", "HT"];
 
 const copy = {
   rs: {
@@ -49,30 +60,49 @@ const copy = {
     },
     stats: [
       { value: "100%", label: "Ručna izrada", text: "Svaka varalica pažljivo završena" },
-      { value: "9", label: "Alfa dekora", text: "Galerija stvarnih fotografija modela" },
+      { value: "2", label: "Modela", text: "Alfa i Zed galerije sa stvarnim fotografijama" },
       { value: "SRB", label: "Domaći brend", text: "Sportski ribolov iz Srbije" },
     ],
     productsLabel: "Naši proizvodi",
     productsTitle: "Modeli varalica",
     productsText:
-      "Model Alfa je predstavljen kroz galeriju stvarnih dekora, sa dostupnim dimenzijama i brzom putanjom do kontakta.",
-    product: {
-      eyebrow: "Varalica za grabljivice",
-      title: "Model Alfa",
-      subtitle: "Snažna akcija i jaka vibracija",
-      description:
-        "Dizajnirana za ribolovce koji traže varalicu sa snažnom akcijom. Krupan rad i jaka vibracija izazivaju instinktivan napad grabljivica. Odlična je za lov soma, a zahvaljujući stabilnom radu pri različitim brzinama vođenja pruža sigurnost i pouzdanost u svim uslovima ribolova.",
-      specs: [
-        { label: "Dimenzije", value: alfaDimensions },
-        { label: "Namena", value: "Som i druge grabljivice" },
-      ],
-      images: alfaImages.map((image, index) => ({
-        ...image,
-        alt: `Model Alfa dekor ${index + 1}`,
-        name: alfaLureNames[index],
-      })),
-      cta: "Zatraži informacije",
-    },
+      "Modeli Alfa i Zed predstavljeni su kroz galerije stvarnih dekora, sa dostupnim dimenzijama i brzom putanjom do kontakta.",
+    products: [
+      {
+        eyebrow: "Varalica za grabljivice",
+        title: "Model Alfa",
+        subtitle: "Snažna akcija i jaka vibracija",
+        description:
+          "Dizajnirana za ribolovce koji traže varalicu sa snažnom akcijom. Krupan rad i jaka vibracija izazivaju instinktivan napad grabljivica. Odlična je za lov soma, a zahvaljujući stabilnom radu pri različitim brzinama vođenja pruža sigurnost i pouzdanost u svim uslovima ribolova.",
+        specs: [
+          { label: "Dimenzije", value: alfaDimensions },
+          { label: "Namena", value: "Som i druge grabljivice" },
+        ],
+        images: alfaImages.map((image, index) => ({
+          ...image,
+          alt: `Model Alfa dekor ${index + 1}`,
+          name: alfaLureNames[index],
+        })),
+        cta: "Zatraži informacije",
+      },
+      {
+        eyebrow: "Varalica za grabljivice",
+        title: "Model Zed",
+        subtitle: "Sitna visokofrekventna vibracija",
+        description:
+          "Namenjena za lov grabljivica. Zahvaljujući lakom ulasku u rad i sitnoj, visokofrekventnoj vibraciji, verno imitira plen i izaziva instinktivan napad grabljivica. Odlične performanse pruža u rekama pri različitim brzinama vođenja.",
+        specs: [
+          { label: "Dimenzije", value: zedDimensions },
+          { label: "Namena", value: "Rečne grabljivice" },
+        ],
+        images: zedImages.map((image, index) => ({
+          ...image,
+          alt: `Model Zed dekor ${index + 1}`,
+          name: zedLureNames[index],
+        })),
+        cta: "Zatraži informacije",
+      },
+    ],
     galleryLabels: {
       previous: "Prethodna slika",
       next: "Sledeća slika",
@@ -117,30 +147,49 @@ const copy = {
     },
     stats: [
       { value: "100%", label: "Handmade", text: "Every lure is carefully finished" },
-      { value: "9", label: "Alfa finishes", text: "Gallery of real model photos" },
+      { value: "2", label: "Models", text: "Alfa and Zed galleries with real photos" },
       { value: "SRB", label: "Serbian brand", text: "Sport fishing tackle from Serbia" },
     ],
     productsLabel: "Our products",
     productsTitle: "Lure models",
     productsText:
-      "Model Alfa is presented through a gallery of real finishes, available dimensions, and a quick path to contact.",
-    product: {
-      eyebrow: "Predator lure",
-      title: "Model Alfa",
-      subtitle: "Strong action and powerful vibration",
-      description:
-        "Designed for anglers looking for a lure with strong action. Its wide movement and powerful vibration trigger an instinctive strike from predators. It is excellent for catfish fishing, while its stable performance at different retrieve speeds provides confidence and reliability in all fishing conditions.",
-      specs: [
-        { label: "Dimensions", value: alfaDimensions },
-        { label: "Use", value: "Catfish and other predators" },
-      ],
-      images: alfaImages.map((image, index) => ({
-        ...image,
-        alt: `Model Alfa finish ${index + 1}`,
-        name: alfaLureNames[index],
-      })),
-      cta: "Request information",
-    },
+      "Models Alfa and Zed are presented through galleries of real finishes, available dimensions, and a quick path to contact.",
+    products: [
+      {
+        eyebrow: "Predator lure",
+        title: "Model Alfa",
+        subtitle: "Strong action and powerful vibration",
+        description:
+          "Designed for anglers looking for a lure with strong action. Its wide movement and powerful vibration trigger an instinctive strike from predators. It is excellent for catfish fishing, while its stable performance at different retrieve speeds provides confidence and reliability in all fishing conditions.",
+        specs: [
+          { label: "Dimensions", value: alfaDimensions },
+          { label: "Use", value: "Catfish and other predators" },
+        ],
+        images: alfaImages.map((image, index) => ({
+          ...image,
+          alt: `Model Alfa finish ${index + 1}`,
+          name: alfaLureNames[index],
+        })),
+        cta: "Request information",
+      },
+      {
+        eyebrow: "Predator lure",
+        title: "Model Zed",
+        subtitle: "Fine high-frequency vibration",
+        description:
+          "Intended for targeting predatory fish. Thanks to its easy start-up and fine, high-frequency vibration, it faithfully imitates prey and triggers an instinctive strike from predators. It delivers excellent performance in rivers at different retrieve speeds.",
+        specs: [
+          { label: "Dimensions", value: zedDimensions },
+          { label: "Use", value: "River predators" },
+        ],
+        images: zedImages.map((image, index) => ({
+          ...image,
+          alt: `Model Zed finish ${index + 1}`,
+          name: zedLureNames[index],
+        })),
+        cta: "Request information",
+      },
+    ],
     galleryLabels: {
       previous: "Previous image",
       next: "Next image",
@@ -169,10 +218,10 @@ const copy = {
 
 export function ProductLanding({ language }: { language: Language }) {
   const text = copy[language];
-  const product = {
-    ...text.product,
+  const products = text.products.map((product) => ({
+    ...product,
     galleryLabels: text.galleryLabels,
-  };
+  }));
 
   return (
     <main className="min-h-screen bg-moss-950 text-stone-50">
@@ -205,7 +254,9 @@ export function ProductLanding({ language }: { language: Language }) {
           </p>
 
           <div id="modeli" className="mt-14 space-y-20">
-            <ProductShowcase key={product.title} {...product} />
+            {products.map((product) => (
+              <ProductShowcase key={product.title} {...product} />
+            ))}
           </div>
         </div>
       </section>
