@@ -129,7 +129,7 @@ function Header({
       <nav className="mx-auto flex h-20 max-w-6xl items-center justify-between px-5 lg:px-8">
         <a href="#" className="relative h-12 w-28" aria-label="SFT Fishing početna">
           <Image
-            src="/images/sft-logo.png"
+            src="/images/logo.svg"
             alt="SFT Fishing logo"
             fill
             className="object-contain"
@@ -259,7 +259,7 @@ function Footer({
     <footer className="border-t border-white/10 bg-moss-900 py-10">
       <div className="mx-auto grid max-w-6xl gap-8 px-5 sm:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
         <div>
-          <Image src="/images/sft-logo.png" alt="SFT Fishing logo" width={132} height={58} className="h-auto w-32" />
+          <Image src="/images/logo.svg" alt="SFT Fishing logo" width={132} height={45} className="h-auto w-32" />
           <p className="mt-4 max-w-sm text-sm leading-7 text-reed">
             {text.text}
           </p>

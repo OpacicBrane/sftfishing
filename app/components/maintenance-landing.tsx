@@ -97,7 +97,7 @@ export function MaintenanceLanding({ language }: { language: Language }) {
           <div>
             <div className="relative h-16 w-40">
               <Image
-                src="/images/sft-logo.png"
+                src="/images/logo.svg"
                 alt="SFT Fishing logo"
                 fill
                 className="object-contain object-left"
