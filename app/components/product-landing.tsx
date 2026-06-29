@@ -28,13 +28,18 @@ const zedDimensions = [
   "6,5cm 25g",
 ];
 
-const alfaImages = Array.from({ length: 9 }, (_, index) => ({
-  image: `/models/model-alfa/model-alfa-${String(index + 1).padStart(2, "0")}.jpeg`,
-}));
+const createModelImages = (model: string) =>
+  Array.from({ length: 9 }, (_, index) => {
+    const fileName = `${model}-${String(index + 1).padStart(2, "0")}`;
 
-const zedImages = Array.from({ length: 9 }, (_, index) => ({
-  image: `/models/model-zed/model-zed-${String(index + 1).padStart(2, "0")}.jpeg`,
-}));
+    return {
+      image: `/models/${model}/optimized/${fileName}.webp`,
+      thumbnail: `/models/${model}/optimized/${fileName}-thumb.webp`,
+    };
+  });
+
+const alfaImages = createModelImages("model-alfa");
+const zedImages = createModelImages("model-zed");
 
 const alfaLureNames = ["SFC", "HT", "FTP", "NP", "GS", "WH", "S", "B", "RH"];
 const zedLureNames = ["S", "C", "FTP", "NP", "RH", "WH", "B", "SFC", "HT"];
@@ -254,8 +259,8 @@ export function ProductLanding({ language }: { language: Language }) {
           </p>
 
           <div id="modeli" className="mt-14 space-y-20">
-            {products.map((product) => (
-              <ProductShowcase key={product.title} {...product} />
+            {products.map((product, index) => (
+              <ProductShowcase key={product.title} {...product} eager={index === 0} />
             ))}
           </div>
         </div>

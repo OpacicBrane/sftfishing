@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type ProductShowcaseProps = {
   eyebrow: string;
@@ -22,9 +22,11 @@ type ProductShowcaseProps = {
   }[];
   images: {
     image: string;
+    thumbnail: string;
     alt: string;
     name: string;
   }[];
+  eager?: boolean;
 };
 
 export function ProductShowcase({
@@ -36,15 +38,28 @@ export function ProductShowcase({
   cta,
   specs,
   images,
+  eager = false,
 }: ProductShowcaseProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeImage = images[activeIndex];
+  const preloadImage = (image: string) => {
+    const preloadedImage = new window.Image();
+    preloadedImage.src = image;
+  };
   const showPreviousImage = () => {
     setActiveIndex((current) => (current === 0 ? images.length - 1 : current - 1));
   };
   const showNextImage = () => {
     setActiveIndex((current) => (current === images.length - 1 ? 0 : current + 1));
   };
+
+  useEffect(() => {
+    const previousIndex = activeIndex === 0 ? images.length - 1 : activeIndex - 1;
+    const nextIndex = activeIndex === images.length - 1 ? 0 : activeIndex + 1;
+
+    preloadImage(images[previousIndex].image);
+    preloadImage(images[nextIndex].image);
+  }, [activeIndex, images]);
 
   return (
     <section className="grid items-center gap-10 lg:grid-cols-[1.04fr_0.96fr] lg:gap-14">
@@ -57,7 +72,8 @@ export function ProductShowcase({
               fill
               className="object-cover"
               sizes="(min-width: 1024px) 560px, 100vw"
-              priority={activeIndex === 0}
+              priority={eager && activeIndex === 0}
+              unoptimized
             />
           </div>
           <div className="absolute right-4 top-4 rounded-full bg-black/60 px-3 py-1 text-xs font-black text-white backdrop-blur">
@@ -86,12 +102,14 @@ export function ProductShowcase({
             {images.map((image, index) => (
               <button
                 key={image.image}
-                type="button"
-                aria-label={`${galleryLabels.showImage} ${index + 1}`}
-                onClick={() => setActiveIndex(index)}
-                className={`h-3 w-3 rounded-full transition ${
-                  activeIndex === index
-                    ? "bg-brass-400"
+              type="button"
+              aria-label={`${galleryLabels.showImage} ${index + 1}`}
+              onClick={() => setActiveIndex(index)}
+              onFocus={() => preloadImage(image.image)}
+              onMouseEnter={() => preloadImage(image.image)}
+              className={`h-3 w-3 rounded-full transition ${
+                activeIndex === index
+                  ? "bg-brass-400"
                     : "bg-white/45 hover:bg-white/75"
                 }`}
               />
@@ -106,6 +124,8 @@ export function ProductShowcase({
               type="button"
               aria-label={`${galleryLabels.openThumbnail} ${index + 1}`}
               onClick={() => setActiveIndex(index)}
+              onFocus={() => preloadImage(image.image)}
+              onMouseEnter={() => preloadImage(image.image)}
               className={`relative aspect-square overflow-hidden rounded-md border transition ${
                 activeIndex === index
                   ? "border-brass-400"
@@ -113,11 +133,12 @@ export function ProductShowcase({
               }`}
             >
               <Image
-                src={image.image}
+                src={image.thumbnail}
                 alt=""
                 fill
                 className="object-cover"
                 sizes="72px"
+                unoptimized
               />
             </button>
           ))}
