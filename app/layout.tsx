@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SFT Fishing | Sajt je u pripremi",
+  title: "SFT Fishing | Model Alfa",
   description:
-    "SFT Fishing priprema katalog ribolovnih varalica. Kontaktirajte nas telefonom ili emailom i pridružite se listi čekanja.",
+    "SFT Fishing katalog ribolovnih varalica. Pogledajte Model Alfa, dostupne dimenzije i galeriju dekora.",
 };
 
 export default function RootLayout({

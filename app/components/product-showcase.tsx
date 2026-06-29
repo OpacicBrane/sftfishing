@@ -9,13 +9,21 @@ type ProductShowcaseProps = {
   title: string;
   subtitle: string;
   description: string;
+  galleryLabels: {
+    previous: string;
+    next: string;
+    showImage: string;
+    openThumbnail: string;
+  };
+  cta: string;
   specs: {
     label: string;
-    value: string;
+    value: string | string[];
   }[];
   images: {
     image: string;
     alt: string;
+    name: string;
   }[];
 };
 
@@ -24,6 +32,8 @@ export function ProductShowcase({
   title,
   subtitle,
   description,
+  galleryLabels,
+  cta,
   specs,
   images,
 }: ProductShowcaseProps) {
@@ -53,9 +63,12 @@ export function ProductShowcase({
           <div className="absolute right-4 top-4 rounded-full bg-black/60 px-3 py-1 text-xs font-black text-white backdrop-blur">
             {activeIndex + 1} / {images.length}
           </div>
+          <div className="absolute left-4 top-4 rounded-full bg-black/60 px-3 py-1 text-xs font-black uppercase tracking-[0.12em] text-white backdrop-blur">
+            {activeImage.name}
+          </div>
           <button
             type="button"
-            aria-label="Prethodna slika"
+            aria-label={galleryLabels.previous}
             onClick={showPreviousImage}
             className="absolute left-4 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/35 text-white/80 backdrop-blur transition hover:border-brass-300/70 hover:bg-black/55 hover:text-brass-300 focus:outline-none focus:ring-2 focus:ring-brass-300"
           >
@@ -63,7 +76,7 @@ export function ProductShowcase({
           </button>
           <button
             type="button"
-            aria-label="Sledeća slika"
+            aria-label={galleryLabels.next}
             onClick={showNextImage}
             className="absolute right-4 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/35 text-white/80 backdrop-blur transition hover:border-brass-300/70 hover:bg-black/55 hover:text-brass-300 focus:outline-none focus:ring-2 focus:ring-brass-300"
           >
@@ -74,7 +87,7 @@ export function ProductShowcase({
               <button
                 key={image.image}
                 type="button"
-                aria-label={`Prikaži sliku ${index + 1}`}
+                aria-label={`${galleryLabels.showImage} ${index + 1}`}
                 onClick={() => setActiveIndex(index)}
                 className={`h-3 w-3 rounded-full transition ${
                   activeIndex === index
@@ -91,7 +104,7 @@ export function ProductShowcase({
             <button
               key={image.image}
               type="button"
-              aria-label={`Otvori thumbnail ${index + 1}`}
+              aria-label={`${galleryLabels.openThumbnail} ${index + 1}`}
               onClick={() => setActiveIndex(index)}
               className={`relative aspect-square overflow-hidden rounded-md border transition ${
                 activeIndex === index
@@ -123,16 +136,31 @@ export function ProductShowcase({
         </p>
         <p className="mt-7 text-base leading-8 text-reed sm:text-lg">{description}</p>
 
-        <dl className="mt-8 grid gap-4 sm:grid-cols-2">
+        <dl className="mt-8 grid gap-4 sm:grid-cols-3">
           {specs.map((spec) => (
             <div
               key={spec.label}
-              className="rounded-md border border-white/10 bg-white/[0.04] p-4"
+              className={`rounded-md border border-white/10 bg-white/[0.04] p-4 ${
+                Array.isArray(spec.value) ? "sm:col-span-2" : "sm:col-span-1"
+              }`}
             >
               <dt className="text-xs font-black uppercase tracking-[0.16em] text-brass-400">
                 {spec.label}
               </dt>
-              <dd className="mt-2 font-bold text-white">{spec.value}</dd>
+              <dd className="mt-3 font-bold text-white">
+                {Array.isArray(spec.value) ? (
+                  <ul className="grid gap-x-5 gap-y-2 sm:grid-cols-2">
+                    {spec.value.map((item) => (
+                      <li key={item} className="flex items-center gap-3">
+                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-brass-400" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  spec.value
+                )}
+              </dd>
             </div>
           ))}
         </dl>
@@ -141,7 +169,7 @@ export function ProductShowcase({
           href="#kontakt"
           className="mt-8 inline-flex rounded-md bg-brass-400 px-7 py-4 text-sm font-black text-moss-950 transition hover:bg-brass-300"
         >
-          Zatraži informacije
+          {cta}
         </a>
       </div>
     </section>

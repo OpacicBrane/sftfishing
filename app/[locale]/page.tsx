@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { MaintenanceLanding } from "../components/maintenance-landing";
+import { ProductLanding } from "../components/product-landing";
 
 const locales = ["rs", "en"] as const;
 type Locale = (typeof locales)[number];
@@ -19,5 +19,5 @@ export default async function LocalePage({
     notFound();
   }
 
-  return <MaintenanceLanding language={locale as Locale} />;
+  return <ProductLanding language={locale as Locale} />;
 }

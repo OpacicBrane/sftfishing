@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Mail, Phone } from "lucide-react";
 import { ProductShowcase } from "./product-showcase";
 
@@ -6,58 +7,181 @@ const phoneDisplay = "+381 69 660 654";
 const phoneHref = "+38169660654";
 const email = "sft.srb@gmail.com";
 
-const products = [
-  {
-    eyebrow: "Varalica za predatore",
-    title: "SFT Predator Model",
-    subtitle: "Predator serija",
-    description:
-      "Dizajnirana za lov štuke, smuđa i basa. Realističan izgled i precizno balansiran pokret privlače i najopreznije ribe.",
-    specs: [
-      { label: "Dužina", value: "9 cm" },
-      { label: "Težina", value: "12 g" },
-      { label: "Dubina", value: "0.5 - 1.5 m" },
-      { label: "Tip", value: "Wobbler" },
-    ],
-    images: Array.from({ length: 10 }, (_, index) => ({
-      alt: `SFT Predator Model prikaz ${index + 1}`,
-      image: `/models/model-${String(index + 1).padStart(2, "0")}.svg`,
-    })),
-  },
-  {
-    eyebrow: "Varalica za sve uslove",
-    title: "SFT River Model",
-    subtitle: "River serija",
-    description:
-      "Varalica za reku, jezero i mutnu vodu, sa upadljivim dekorima i stabilnim radom pri sporom i brzom vođenju.",
-    specs: [
-      { label: "Dužina", value: "8 cm" },
-      { label: "Težina", value: "14 g" },
-      { label: "Dubina", value: "1.2 - 2.4 m" },
-      { label: "Tip", value: "Minnow" },
-    ],
-    images: Array.from({ length: 10 }, (_, index) => ({
-      alt: `SFT River Model prikaz ${index + 1}`,
-      image: `/models/model-${String(index + 11).padStart(2, "0")}.svg`,
-    })),
-  },
+const languages = ["rs", "en"] as const;
+type Language = (typeof languages)[number];
+
+const alfaDimensions = [
+  "4cm 6g",
+  "5,5cm 10g",
+  "5,5cm 15g",
+  "7cm 20g",
+  "7cm 30g",
+  "8cm 40g",
+  "9cm 50g",
+  "12,5cm 100g",
+  "12,5cm 140g",
 ];
 
-const stats = [
-  { value: "100%", label: "Ručna izrada", text: "Svaka varalica pažljivo završena" },
-  { value: "2", label: "Galerije modela", text: "Po deset dummy modela za start" },
-  { value: "SRB", label: "Domaći brend", text: "Sportski ribolov iz Srbije" },
-];
+const alfaImages = Array.from({ length: 9 }, (_, index) => ({
+  image: `/models/model-alfa/model-alfa-${String(index + 1).padStart(2, "0")}.jpeg`,
+}));
 
-export function ProductLanding() {
+const alfaLureNames = ["SFC", "HT", "FTP", "NP", "GS", "WH", "S", "B", "RH"];
+
+const copy = {
+  rs: {
+    languageLabel: "Jezik",
+    languageName: "SRB",
+    nav: {
+      home: "Početna",
+      models: "Modeli",
+      contact: "Kontakt",
+    },
+    hero: {
+      eyebrow: "Sport Fishing Tackle",
+      title: "SFT Fishing",
+      accent: "Varalice",
+      intro:
+        "Premium ribolovne varalice izrađene sa strašću za ribolov. Za rekreativce i takmičare koji ne pristaju na kompromise.",
+      primary: "Pogledaj modele",
+      secondary: "Kontaktiraj nas",
+      imageAlt: "Maglovito jezero u zoru",
+    },
+    stats: [
+      { value: "100%", label: "Ručna izrada", text: "Svaka varalica pažljivo završena" },
+      { value: "9", label: "Alfa dekora", text: "Galerija stvarnih fotografija modela" },
+      { value: "SRB", label: "Domaći brend", text: "Sportski ribolov iz Srbije" },
+    ],
+    productsLabel: "Naši proizvodi",
+    productsTitle: "Modeli varalica",
+    productsText:
+      "Model Alfa je predstavljen kroz galeriju stvarnih dekora, sa dostupnim dimenzijama i brzom putanjom do kontakta.",
+    product: {
+      eyebrow: "Varalica za grabljivice",
+      title: "Model Alfa",
+      subtitle: "Snažna akcija i jaka vibracija",
+      description:
+        "Dizajnirana za ribolovce koji traže varalicu sa snažnom akcijom. Krupan rad i jaka vibracija izazivaju instinktivan napad grabljivica. Odlična je za lov soma, a zahvaljujući stabilnom radu pri različitim brzinama vođenja pruža sigurnost i pouzdanost u svim uslovima ribolova.",
+      specs: [
+        { label: "Dimenzije", value: alfaDimensions },
+        { label: "Namena", value: "Som i druge grabljivice" },
+      ],
+      images: alfaImages.map((image, index) => ({
+        ...image,
+        alt: `Model Alfa dekor ${index + 1}`,
+        name: alfaLureNames[index],
+      })),
+      cta: "Zatraži informacije",
+    },
+    galleryLabels: {
+      previous: "Prethodna slika",
+      next: "Sledeća slika",
+      showImage: "Prikaži sliku",
+      openThumbnail: "Otvori thumbnail",
+    },
+    contact: {
+      label: "Stupite u kontakt",
+      title: "Kontaktirajte nas",
+      text:
+        "Imate pitanje o modelima, narudžbini ili saradnji? Slobodno nas kontaktirajte, odgovaramo brzo.",
+      phone: "Telefon",
+      email: "Email",
+    },
+    footer: {
+      text:
+        "Srpski proizvođač premium ribolovnih varalica. Svaka varalica je pažljivo izrađena za maksimalne rezultate.",
+      navTitle: "Navigacija",
+      models: "Modeli varalica",
+      contactTitle: "Kontakt",
+      rights: "© 2026 SFT Fishing. Sva prava zadržana.",
+      made: "Izrađeno sa strašću za ribolov.",
+    },
+  },
+  en: {
+    languageLabel: "Language",
+    languageName: "EN",
+    nav: {
+      home: "Home",
+      models: "Models",
+      contact: "Contact",
+    },
+    hero: {
+      eyebrow: "Sport Fishing Tackle",
+      title: "SFT Fishing",
+      accent: "Lures",
+      intro:
+        "Premium fishing lures crafted with a passion for angling. Built for recreational anglers and competitors who do not settle for compromises.",
+      primary: "View models",
+      secondary: "Contact us",
+      imageAlt: "Misty lake at dawn",
+    },
+    stats: [
+      { value: "100%", label: "Handmade", text: "Every lure is carefully finished" },
+      { value: "9", label: "Alfa finishes", text: "Gallery of real model photos" },
+      { value: "SRB", label: "Serbian brand", text: "Sport fishing tackle from Serbia" },
+    ],
+    productsLabel: "Our products",
+    productsTitle: "Lure models",
+    productsText:
+      "Model Alfa is presented through a gallery of real finishes, available dimensions, and a quick path to contact.",
+    product: {
+      eyebrow: "Predator lure",
+      title: "Model Alfa",
+      subtitle: "Strong action and powerful vibration",
+      description:
+        "Designed for anglers looking for a lure with strong action. Its wide movement and powerful vibration trigger an instinctive strike from predators. It is excellent for catfish fishing, while its stable performance at different retrieve speeds provides confidence and reliability in all fishing conditions.",
+      specs: [
+        { label: "Dimensions", value: alfaDimensions },
+        { label: "Use", value: "Catfish and other predators" },
+      ],
+      images: alfaImages.map((image, index) => ({
+        ...image,
+        alt: `Model Alfa finish ${index + 1}`,
+        name: alfaLureNames[index],
+      })),
+      cta: "Request information",
+    },
+    galleryLabels: {
+      previous: "Previous image",
+      next: "Next image",
+      showImage: "Show image",
+      openThumbnail: "Open thumbnail",
+    },
+    contact: {
+      label: "Get in touch",
+      title: "Contact us",
+      text:
+        "Have a question about models, orders, or collaboration? Contact us anytime and we will reply quickly.",
+      phone: "Phone",
+      email: "Email",
+    },
+    footer: {
+      text:
+        "A Serbian producer of premium fishing lures. Every lure is carefully crafted for maximum results.",
+      navTitle: "Navigation",
+      models: "Lure models",
+      contactTitle: "Contact",
+      rights: "© 2026 SFT Fishing. All rights reserved.",
+      made: "Made with a passion for fishing.",
+    },
+  },
+};
+
+export function ProductLanding({ language }: { language: Language }) {
+  const text = copy[language];
+  const product = {
+    ...text.product,
+    galleryLabels: text.galleryLabels,
+  };
+
   return (
     <main className="min-h-screen bg-moss-950 text-stone-50">
-      <Header />
-      <Hero />
+      <Header language={language} text={text} />
+      <Hero text={text.hero} />
 
       <section className="border-y border-white/10 bg-moss-850">
         <div className="mx-auto grid max-w-6xl gap-8 px-5 py-10 sm:grid-cols-3 lg:px-8">
-          {stats.map((stat) => (
+          {text.stats.map((stat) => (
             <div key={stat.label} className="text-center">
               <p className="font-display text-4xl font-black text-brass-400">{stat.value}</p>
               <p className="mt-1 text-sm font-bold text-white">{stat.label}</p>
@@ -71,32 +195,34 @@ export function ProductLanding() {
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brass-400/60 to-transparent" />
         <div className="mx-auto max-w-6xl px-5 lg:px-8">
           <p className="text-center text-xs font-black uppercase tracking-[0.28em] text-brass-400">
-            Naši proizvodi
+            {text.productsLabel}
           </p>
           <h2 className="mt-4 text-center font-display text-4xl font-black text-white sm:text-6xl">
-            Modeli varalica
+            {text.productsTitle}
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-center text-base leading-8 text-reed sm:text-lg">
-            Za početak su tu dva primera varalica. Svaki model ima svoju
-            galeriju sa deset dummy slika, osnovne mere i brzu putanju do
-            kontakta.
+            {text.productsText}
           </p>
 
           <div id="modeli" className="mt-14 space-y-20">
-            {products.map((product) => (
-              <ProductShowcase key={product.title} {...product} />
-            ))}
+            <ProductShowcase key={product.title} {...product} />
           </div>
         </div>
       </section>
 
-      <Contact />
-      <Footer />
+      <Contact text={text.contact} />
+      <Footer text={text.footer} nav={text.nav} />
     </main>
   );
 }
 
-function Header() {
+function Header({
+  language,
+  text,
+}: {
+  language: Language;
+  text: (typeof copy)[Language];
+}) {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-moss-950/88 backdrop-blur-md">
       <nav className="mx-auto flex h-20 max-w-6xl items-center justify-between px-5 lg:px-8">
@@ -112,32 +238,51 @@ function Header() {
         </a>
         <div className="hidden items-center gap-8 text-xs font-black uppercase tracking-[0.18em] text-reed sm:flex">
           <a className="transition hover:text-brass-300" href="#">
-            Početna
+            {text.nav.home}
           </a>
           <a className="transition hover:text-brass-300" href="#modeli">
-            Modeli
+            {text.nav.models}
           </a>
           <a className="transition hover:text-brass-300" href="#kontakt">
-            Kontakt
+            {text.nav.contact}
           </a>
         </div>
-        <a
-          href={`tel:${phoneHref}`}
-          className="rounded-md border border-brass-400/70 px-4 py-3 text-xs font-black text-brass-300 transition hover:bg-brass-400 hover:text-moss-950"
-        >
-          {phoneDisplay}
-        </a>
+        <div className="flex items-center gap-2">
+          <div
+            className="hidden overflow-hidden rounded-md border border-white/15 text-xs font-black text-white sm:flex"
+            aria-label={text.languageLabel}
+          >
+            {languages.map((option) => (
+              <Link
+                key={option}
+                href={`/${option}`}
+                aria-current={language === option ? "page" : undefined}
+                className={`px-3 py-2 transition hover:bg-white/10 ${
+                  language === option ? "bg-brass-400 text-moss-950" : "text-white"
+                }`}
+              >
+                {copy[option].languageName}
+              </Link>
+            ))}
+          </div>
+          <a
+            href={`tel:${phoneHref}`}
+            className="rounded-md border border-brass-400/70 px-4 py-3 text-xs font-black text-brass-300 transition hover:bg-brass-400 hover:text-moss-950"
+          >
+            {phoneDisplay}
+          </a>
+        </div>
       </nav>
     </header>
   );
 }
 
-function Hero() {
+function Hero({ text }: { text: (typeof copy)[Language]["hero"] }) {
   return (
     <section className="relative flex min-h-[92vh] items-center overflow-hidden pt-20">
       <Image
         src="/images/hero-fishing.png"
-        alt="Maglovito jezero u zoru"
+        alt={text.imageAlt}
         fill
         priority
         className="object-cover"
@@ -147,28 +292,27 @@ function Hero() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(215,185,74,0.16),transparent_34%),linear-gradient(to_bottom,rgba(6,17,8,0.3),rgba(6,17,8,0.92))]" />
       <div className="relative z-10 mx-auto max-w-4xl px-5 text-center lg:px-8">
         <p className="text-xs font-black uppercase tracking-[0.3em] text-brass-300">
-          Sport Fishing Tackle
+          {text.eyebrow}
         </p>
         <h1 className="mt-5 font-display text-5xl font-black leading-none text-white sm:text-7xl lg:text-8xl">
-          SFT Fishing
-          <span className="block text-brass-400">Varalice</span>
+          {text.title}
+          <span className="block text-brass-400">{text.accent}</span>
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-base font-semibold leading-8 text-stone-200 sm:text-lg">
-          Premium ribolovne varalice izrađene sa strašću za ribolov. Za
-          rekreativce i takmičare koji ne pristaju na kompromise.
+          {text.intro}
         </p>
         <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
             href="#modeli"
             className="w-full rounded-md bg-brass-400 px-7 py-4 text-sm font-black text-moss-950 shadow-glow transition hover:bg-brass-300 sm:w-auto"
           >
-            Pogledaj modele
+            {text.primary}
           </a>
           <a
             href="#kontakt"
             className="w-full rounded-md border border-white/45 px-7 py-4 text-sm font-black text-white transition hover:border-brass-300 hover:text-brass-300 sm:w-auto"
           >
-            Kontaktiraj nas
+            {text.secondary}
           </a>
         </div>
       </div>
@@ -177,19 +321,18 @@ function Hero() {
   );
 }
 
-function Contact() {
+function Contact({ text }: { text: (typeof copy)[Language]["contact"] }) {
   return (
     <section id="kontakt" className="bg-moss-850 py-16 sm:py-24">
       <div className="mx-auto max-w-4xl px-5 text-center lg:px-8">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-brass-400">
-          Stupite u kontakt
+          {text.label}
         </p>
         <h2 className="mt-4 font-display text-4xl font-black text-white sm:text-6xl">
-          Kontaktirajte nas
+          {text.title}
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-reed">
-          Imate pitanje o modelima, narudžbini ili saradnji? Slobodno nas
-          kontaktirajte, odgovaramo brzo.
+          {text.text}
         </p>
         <div className="mt-10 grid gap-5 sm:grid-cols-2">
           <a
@@ -200,7 +343,7 @@ function Contact() {
               <Phone size={24} />
             </span>
             <span className="mt-5 block text-xs font-black uppercase tracking-[0.18em] text-reed">
-              Telefon
+              {text.phone}
             </span>
             <span className="mt-2 block text-xl font-black text-white">{phoneDisplay}</span>
           </a>
@@ -212,7 +355,7 @@ function Contact() {
               <Mail size={24} />
             </span>
             <span className="mt-5 block text-xs font-black uppercase tracking-[0.18em] text-reed">
-              Email
+              {text.email}
             </span>
             <span className="mt-2 block text-xl font-black text-white">{email}</span>
           </a>
@@ -222,27 +365,32 @@ function Contact() {
   );
 }
 
-function Footer() {
+function Footer({
+  text,
+  nav,
+}: {
+  text: (typeof copy)[Language]["footer"];
+  nav: (typeof copy)[Language]["nav"];
+}) {
   return (
     <footer className="border-t border-white/10 bg-moss-900 py-10">
       <div className="mx-auto grid max-w-6xl gap-8 px-5 sm:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
         <div>
           <Image src="/images/sft-logo.png" alt="SFT Fishing logo" width={132} height={58} className="h-auto w-32" />
           <p className="mt-4 max-w-sm text-sm leading-7 text-reed">
-            Srpski proizvođač premium ribolovnih varalica. Svaka varalica je
-            pažljivo izrađena za maksimalne rezultate.
+            {text.text}
           </p>
         </div>
         <div>
-          <p className="text-xs font-black uppercase tracking-[0.2em] text-brass-400">Navigacija</p>
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-brass-400">{text.navTitle}</p>
           <div className="mt-4 grid gap-3 text-sm text-reed">
-            <a className="hover:text-brass-300" href="#">Početna</a>
-            <a className="hover:text-brass-300" href="#modeli">Modeli varalica</a>
-            <a className="hover:text-brass-300" href="#kontakt">Kontakt</a>
+            <a className="hover:text-brass-300" href="#">{nav.home}</a>
+            <a className="hover:text-brass-300" href="#modeli">{text.models}</a>
+            <a className="hover:text-brass-300" href="#kontakt">{nav.contact}</a>
           </div>
         </div>
         <div>
-          <p className="text-xs font-black uppercase tracking-[0.2em] text-brass-400">Kontakt</p>
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-brass-400">{text.contactTitle}</p>
           <div className="mt-4 grid gap-3 text-sm text-reed">
             <a className="hover:text-brass-300" href={`tel:${phoneHref}`}>{phoneDisplay}</a>
             <a className="hover:text-brass-300" href={`mailto:${email}`}>{email}</a>
@@ -250,8 +398,8 @@ function Footer() {
         </div>
       </div>
       <div className="mx-auto mt-10 flex max-w-6xl flex-col justify-between gap-3 border-t border-white/10 px-5 pt-6 text-xs text-reed sm:flex-row lg:px-8">
-        <p>© 2026 SFT Fishing. Sva prava zadržana.</p>
-        <p>Izrađeno sa strašću za ribolov.</p>
+        <p>{text.rights}</p>
+        <p>{text.made}</p>
       </div>
     </footer>
   );
